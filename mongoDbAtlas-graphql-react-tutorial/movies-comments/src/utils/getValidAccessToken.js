@@ -10,8 +10,7 @@ export async function getValidAccessToken() {
     const credentials = Realm.Credentials.apiKey(API_KEY);
     await app.logIn(credentials);
   } else {
-    //await app.currentUser.refreshCustomData();
+    await app.currentUser.refreshCustomData();
   }
-  console.log("getvalid içinde accessToken", app.currentUser.accessToken);
   return app.currentUser.accessToken;
 }
