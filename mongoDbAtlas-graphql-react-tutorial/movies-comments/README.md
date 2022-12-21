@@ -1,5 +1,5 @@
 # NOTES
-### I developed this project as a tutorial for improving my programming skills and making experience . I used MongoDbAtlas for Backend . GraphQL for query, React.js for front-end, TailwindCss for Css, Redux-Toolkit for storing movies. API_KEY for MongoDbAtlas's authentication.
+### I developed this project as a tutorial for improving my programming skills and gaining experience . I used MongoDbAtlas for Backend . GraphQL for query, React.js for front-end, TailwindCss for Css, Redux-Toolkit for storing movies. API_KEY for MongoDbAtlas's authentication.
 
 #### Please feel free if you want to use and share :)
 
