@@ -5,18 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 //require("dotenv").config();
 import { environments } from "./environments/environments";
-import { ApolloClient, InMemoryCache, ApolloProvider,HttpLink } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+} from "@apollo/client";
 import { getValidAccessToken } from "./utils/getValidAccessToken";
-
-
-
-// const client = new ApolloClient({
-//   uri: environments.GRAPHQL_URI,
-//   cache: new InMemoryCache(),
-//   headers: {
-//     Authorization: "Bearer " + accessToken,
-//   },
-// });
+import "tw-elements";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -30,14 +28,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ApolloProvider>
   </React.StrictMode>
 );

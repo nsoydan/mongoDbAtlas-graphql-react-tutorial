@@ -1,38 +1,42 @@
 import "./App.css";
-import { getValidAccessToken } from "./utils/getValidAccessToken";
 //require("dotenv").config();
 import { useQuery, gql } from "@apollo/client";
-
-import { useState, useEffect } from "react";
+import Spinner from "./components/spinner.component";
+import MovieList from "./components/movieList.component";
+import { useDispatch } from "react-redux";
+import { setMovies } from "./store/movies/moviesSlice";
 
 const GET_MOVIES = gql`
   query {
     movies {
       _id
       title
+      fullplot
+      poster
+      cast
+      imdb {
+        rating
+      }
     }
   }
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(GET_MOVIES);
-
+  const { loading, data } = useQuery(GET_MOVIES);
   console.log("response data:", data);
+
+  const dispatch = useDispatch();
+  if (data) {
+    dispatch(setMovies(data.movies));
+  }
+
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Spinner />;
   }
   return (
     <div className="App">
       <h1> MOVIES </h1>
-      {data.movies ? (
-        data.movies.map((movie) => (
-          <div key={movie._id}>
-            <span>{movie.title}</span>
-          </div>
-        ))
-      ) : (
-        <span>Movie Yok</span>
-      )}
+      <MovieList />
     </div>
   );
 }
